@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Labb3_Ressurrection.Managers;
@@ -101,6 +102,11 @@ public class EditSelectedQuizViewModel : ObservableObject
         set
         {
             SetProperty(ref _checkBoxOne, value);
+            if (CheckBoxOne.Equals(true))
+            {
+                CheckBoxTwo = false;
+                CheckBoxThree = false;
+            }
         }
     }
 
@@ -111,6 +117,11 @@ public class EditSelectedQuizViewModel : ObservableObject
         set
         {
             SetProperty(ref _checkBoxTwo, value);
+            if (CheckBoxTwo.Equals(true))
+            {
+                CheckBoxOne = false;
+                CheckBoxThree = false;
+            }
         }
     }
 
@@ -121,12 +132,16 @@ public class EditSelectedQuizViewModel : ObservableObject
         set
         {
             SetProperty(ref _checkBoxThree, value);
+            if (CheckBoxThree.Equals(true))
+            {
+                CheckBoxOne = false;
+                CheckBoxTwo = false;
+            }
         }
     }
 
     private string[] _answers = new string[3];
     public string[] Answers => _answers;
-    
 
     public EditSelectedQuizViewModel(NavigationManager navigationManager, QuizModel quizModel)
     {
@@ -155,15 +170,30 @@ public class EditSelectedQuizViewModel : ObservableObject
         {
             if (IsQuestionComplete())
             {
-                if (QuestionList.Exists(s => s.Statement == QuizQuestion))
+                QuestionList[SelectedQuestionIndex].Statement = QuizQuestion;
+
+                QuestionList[SelectedQuestionIndex].Answers[0] = QuizAnswerOne;
+                QuestionList[SelectedQuestionIndex].Answers[1] = QuizAnswerTwo;
+                QuestionList[SelectedQuestionIndex].Answers[2] = QuizAnswerThree;
+
+                var correctAnswer = 0;
+
+                if (CheckBoxOne)
                 {
-                    _quizModel.AddQuestion(QuizQuestion, CorrectAnswer, (string[])Answers.Clone());
+                    correctAnswer = 0;
+                }
+                else if (CheckBoxTwo)
+                {
+                    correctAnswer = 1;
                 }
                 else
                 {
-                    PopulateProperties(SelectedQuestionIndex + 1);
-                    _quizModel.AddQuestion(QuizQuestion, CorrectAnswer, (string[])Answers.Clone());
+                    correctAnswer = 2;
                 }
+
+                QuestionList[SelectedQuestionIndex].CorrectAnswer = correctAnswer;
+
+                _quizModel.EditQuestion(SelectedQuestionIndex, QuestionList[SelectedQuestionIndex]);
             }
         }, () => true);
 
@@ -206,7 +236,6 @@ public class EditSelectedQuizViewModel : ObservableObject
         {
             return false;
         }
-
         return true;
     }
 

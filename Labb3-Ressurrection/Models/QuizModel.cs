@@ -171,6 +171,12 @@ public class QuizModel
         _questions = _questions.Concat(new[] { myQuestionModel });
     }
 
+    public void EditQuestion(int index, QuestionProperties question)
+    {
+        QuizQuestionProperties.Result.RemoveAt(index);
+        QuizQuestionProperties.Result.Insert(index, question);
+    }
+
     public void RemoveQuestion(int index)
     {
         QuizQuestionProperties.Result.RemoveAt(index);

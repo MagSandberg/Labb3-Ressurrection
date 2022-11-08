@@ -111,7 +111,7 @@
                 Background="Aqua"
                 FontFamily="Agency FB"
                 FontSize="18"
-                ItemsSource="{Binding QuestionList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                ItemsSource="{Binding QuestionList, UpdateSourceTrigger=LostFocus}"
                 SelectedIndex="{Binding SelectedQuestionIndex, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock
                 Grid.Row="0"

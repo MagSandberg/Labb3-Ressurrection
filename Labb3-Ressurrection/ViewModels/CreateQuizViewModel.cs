@@ -121,7 +121,7 @@ public class CreateQuizViewModel : ObservableObject
 
         AddQuestionCommand = new RelayCommand(() =>
         {
-            if (IsQuestionComplete(true))
+            if (IsQuestionComplete())
             {
                 _quizModel.AddQuestion(QuestionTextBox, CorrectAnswerRadioButton, (string[])Answers.Clone());
 
@@ -142,7 +142,7 @@ public class CreateQuizViewModel : ObservableObject
 
         SaveQuizCommand = new RelayCommand(() =>
         {
-            if (IsQuizComplete(true))
+            if (IsQuizComplete())
             {
                 _quizModel.SaveQuizAsync(TitleTextBox);
 
@@ -155,7 +155,7 @@ public class CreateQuizViewModel : ObservableObject
         QuitQuizCommand = new RelayCommand(() => _navigationManager.CurrentViewModel = new StartViewModel(_navigationManager, _quizModel));
     }
 
-    public bool IsQuestionComplete(bool isQuestionComplete)
+    public bool IsQuestionComplete()
     {
         if (string.IsNullOrEmpty(QuestionTextBox))
         {
@@ -172,7 +172,7 @@ public class CreateQuizViewModel : ObservableObject
         return true;
     }
 
-    public bool IsQuizComplete(bool isQuizComplete)
+    public bool IsQuizComplete()
     {
         if (QuestionCounter > 0)
         {
