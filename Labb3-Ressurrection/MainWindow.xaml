@@ -1,0 +1,38 @@
+﻿<Window
+    x:Class="Labb3_Ressurrection.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:Labb3_Ressurrection.ViewModels"
+    xmlns:views="clr-namespace:Labb3_Ressurrection.Views"
+    Title="MainWindow"
+    Width="800"
+    Height="500"
+    MinWidth="800"
+    MinHeight="500"
+    mc:Ignorable="d">
+    <Grid>
+        <Grid.Resources>
+            <DataTemplate DataType="{x:Type viewModels:StartViewModel}">
+                <views:StartView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:SelectQuizViewModel}">
+                <views:SelectQuizView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:QuizViewModel}">
+                <views:QuizView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:CreateQuizViewModel}">
+                <views:CreateQuizView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:EditQuizViewModel}">
+                <views:EditView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModels:EditSelectedQuizViewModel}">
+                <views:EditSelectedQuizView />
+            </DataTemplate>
+        </Grid.Resources>
+        <ContentControl Content="{Binding CurrentViewModel}" />
+    </Grid>
+</Window>

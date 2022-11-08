@@ -1,0 +1,552 @@
+﻿<UserControl
+    x:Class="Labb3_Ressurrection.Views.CreateQuizView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:viewModels="clr-namespace:Labb3_Ressurrection.ViewModels"
+    d:DataContext="{d:DesignInstance viewModels:CreateQuizViewModel}"
+    d:DesignHeight="500"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <BitmapImage x:Key="BgImage" UriSource="/Resources/Images/bg.jpg" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="{StaticResource BgImage}" />
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="1"
+            Width="Auto"
+            Height="Auto"
+            Margin="0,0,0,7"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            FontFamily="Agency FB"
+            FontSize="40"
+            FontWeight="Bold"
+            Foreground="White"
+            TextAlignment="Center">
+            <TextBlock.Effect>
+                <DropShadowEffect
+                    BlurRadius="15"
+                    ShadowDepth="5"
+                    Color="#FF1D3782" />
+            </TextBlock.Effect>
+            CREATE QUIZ
+        </TextBlock>
+        <TextBlock
+            Grid.Row="0"
+            Grid.Column="2"
+            Width="Auto"
+            Height="Auto"
+            Margin="0,5,0,0"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            FontFamily="Agency FB"
+            FontSize="24"
+            FontWeight="Bold"
+            Foreground="White"
+            TextAlignment="Right">
+            <TextBlock.Effect>
+                <DropShadowEffect
+                    BlurRadius="15"
+                    ShadowDepth="5"
+                    Color="#FF1D3782" />
+            </TextBlock.Effect>
+            Number of questions:
+        </TextBlock>
+        <TextBlock
+            Name="QuestionCounter"
+            Grid.Row="0"
+            Grid.Column="3"
+            Width="Auto"
+            Height="Auto"
+            Margin="10,6,0,0"
+            VerticalAlignment="Center"
+            Background="Transparent"
+            FontFamily="Agency FB"
+            FontSize="24"
+            FontWeight="Bold"
+            Foreground="White"
+            Text="{Binding QuestionCounter, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+            TextAlignment="Left">
+            <TextBlock.Effect>
+                <DropShadowEffect
+                    BlurRadius="15"
+                    ShadowDepth="5"
+                    Color="#FF1D3782" />
+            </TextBlock.Effect>
+        </TextBlock>
+        <Grid
+            Grid.Row="1"
+            Grid.Column="1"
+            Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="0,-5,0,0"
+                FontFamily="Agency FB"
+                FontSize="26"
+                FontWeight="Bold"
+                Foreground="AliceBlue"
+                Text="Quiz title"
+                TextAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        ShadowDepth="5"
+                        Color="#FF1D3782" />
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBox
+                Name="TitleTextBox"
+                Grid.Row="1"
+                Width="Auto"
+                Height="Auto"
+                MinHeight="51"
+                Margin="10,0,10,10"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                BorderBrush="AliceBlue"
+                BorderThickness="2"
+                FontFamily="Agency FB"
+                FontSize="28"
+                FontWeight="Bold"
+                Foreground="White"
+                Text="{Binding TitleTextBox, UpdateSourceTrigger=PropertyChanged}"
+                TextAlignment="Center"
+                TextWrapping="Wrap">
+                <TextBox.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        ShadowDepth="5"
+                        Color="#FF1D3782" />
+                </TextBox.Effect>
+            </TextBox>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Margin="0,-5,0,0"
+                FontFamily="Agency FB"
+                FontSize="26"
+                FontWeight="Bold"
+                Foreground="AliceBlue"
+                Text="Type your Question here"
+                TextAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        ShadowDepth="5"
+                        Color="#FF1D3782" />
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBox
+                Name="QuestionTextBox"
+                Grid.Row="1"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Width="Auto"
+                Height="Auto"
+                MinHeight="51"
+                Margin="10,0,10,10"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                BorderBrush="AliceBlue"
+                BorderThickness="2"
+                FontFamily="Agency FB"
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="White"
+                Text="{Binding QuestionTextBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                TextAlignment="Center"
+                TextWrapping="Wrap">
+                <TextBox.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        ShadowDepth="5"
+                        Color="#FF1D3782" />
+                </TextBox.Effect>
+            </TextBox>
+        </Grid>
+        <Grid
+            Grid.Row="2"
+            Grid.Column="1"
+            Grid.ColumnSpan="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="2*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="0"
+                FontFamily="Agency FB"
+                FontSize="26"
+                FontWeight="Bold"
+                Foreground="AliceBlue"
+                Text="Type Answer 1 here"
+                TextAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        ShadowDepth="5"
+                        Color="#FF1D3782" />
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBox
+                Name="AnswerOneTextBox"
+                Grid.Row="1"
+                Grid.Column="0"
+                Width="Auto"
+                Height="Auto"
+                MinHeight="46"
+                Margin="10,0,10,10"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                BorderBrush="AliceBlue"
+                BorderThickness="2"
+                FontFamily="Agency FB"
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="White"
+                Text="{Binding AnswerOneTextBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                TextAlignment="Center"
+                TextWrapping="Wrap">
+                <TextBox.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        ShadowDepth="5"
+                        Color="#FF1D3782" />
+                </TextBox.Effect>
+            </TextBox>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="1"
+                FontFamily="Agency FB"
+                FontSize="26"
+                FontWeight="Bold"
+                Foreground="AliceBlue"
+                Text="Answer 2 here"
+                TextAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        ShadowDepth="5"
+                        Color="#FF1D3782" />
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBox
+                Name="AnswerTwoTextBox"
+                Grid.Row="1"
+                Grid.Column="1"
+                Width="Auto"
+                Height="Auto"
+                MinHeight="46"
+                Margin="10,0,10,10"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                BorderBrush="AliceBlue"
+                BorderThickness="2"
+                FontFamily="Agency FB"
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="White"
+                Text="{Binding AnswerTwoTextBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                TextAlignment="Center"
+                TextWrapping="Wrap">
+                <TextBox.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        ShadowDepth="5"
+                        Color="#FF1D3782" />
+                </TextBox.Effect>
+            </TextBox>
+            <TextBlock
+                Grid.Row="0"
+                Grid.Column="2"
+                FontFamily="Agency FB"
+                FontSize="26"
+                FontWeight="Bold"
+                Foreground="AliceBlue"
+                Text="and Answer 3 here"
+                TextAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        ShadowDepth="5"
+                        Color="#FF1D3782" />
+                </TextBlock.Effect>
+            </TextBlock>
+            <TextBox
+                Name="AnswerThreeTextBox"
+                Grid.Row="1"
+                Grid.Column="2"
+                Width="Auto"
+                Height="Auto"
+                MinHeight="46"
+                Margin="10,0,10,10"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                BorderBrush="AliceBlue"
+                BorderThickness="2"
+                FontFamily="Agency FB"
+                FontSize="20"
+                FontWeight="Bold"
+                Foreground="White"
+                Text="{Binding AnswerThreeTextBox, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                TextAlignment="Center"
+                TextWrapping="Wrap">
+                <TextBox.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        ShadowDepth="5"
+                        Color="#FF1D3782" />
+                </TextBox.Effect>
+            </TextBox>
+        </Grid>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock
+                Grid.Row="0"
+                Grid.ColumnSpan="3"
+                Width="Auto"
+                Height="Auto"
+                VerticalAlignment="Center"
+                Background="Transparent"
+                FontFamily="Agency FB"
+                FontSize="26"
+                FontWeight="Bold"
+                Foreground="White"
+                TextAlignment="Center">
+                <TextBlock.Effect>
+                    <DropShadowEffect
+                        BlurRadius="15"
+                        ShadowDepth="5"
+                        Color="#FF1D3782" />
+                </TextBlock.Effect>
+                Correct Answer?
+            </TextBlock>
+            <RadioButton
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="0,0,5,0"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Background="#FFFC07C4"
+                BorderBrush="AliceBlue"
+                BorderThickness="2"
+                Content="1"
+                FontFamily="Agency FB"
+                FontSize="16"
+                FontWeight="Bold"
+                Foreground="AliceBlue"
+                IsChecked="{Binding RadioButtonOne, Mode=TwoWay}">
+                <RadioButton.Effect>
+                    <DropShadowEffect BlurRadius="15" Color="#FF1D3782" />
+                </RadioButton.Effect>
+                <RadioButton.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </RadioButton.LayoutTransform>
+            </RadioButton>
+            <RadioButton
+                Grid.Row="1"
+                Grid.Column="1"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Background="#FFFC07C4"
+                BorderBrush="AliceBlue"
+                BorderThickness="2"
+                Content="2"
+                FontFamily="Agency FB"
+                FontSize="16"
+                FontWeight="Bold"
+                Foreground="AliceBlue"
+                IsChecked="{Binding RadioButtonTwo, Mode=TwoWay}">
+                <RadioButton.Effect>
+                    <DropShadowEffect BlurRadius="15" Color="#FF1D3782" />
+                </RadioButton.Effect>
+                <RadioButton.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </RadioButton.LayoutTransform>
+            </RadioButton>
+            <RadioButton
+                Grid.Row="1"
+                Grid.Column="2"
+                Margin="5,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Background="#FFFC07C4"
+                BorderBrush="AliceBlue"
+                BorderThickness="2"
+                Content="3"
+                FontFamily="Agency FB"
+                FontSize="16"
+                FontWeight="Bold"
+                Foreground="AliceBlue"
+                IsChecked="{Binding RadioButtonThree, Mode=TwoWay}">
+                <RadioButton.Effect>
+                    <DropShadowEffect BlurRadius="15" Color="#FF1D3782" />
+                </RadioButton.Effect>
+                <RadioButton.LayoutTransform>
+                    <ScaleTransform ScaleX="1.7" ScaleY="1.7" />
+                </RadioButton.LayoutTransform>
+            </RadioButton>
+        </Grid>
+        <Button
+            Grid.Row="3"
+            Grid.Column="2"
+            Height="45"
+            MaxWidth="160"
+            BorderBrush="#FFFC07C4"
+            Command="{Binding AddQuestionCommand}"
+            Content="ADD QUESTION"
+            Cursor="Hand"
+            FontFamily="Agency FB"
+            FontSize="26"
+            FontWeight="Bold"
+            Foreground="White"
+            RenderTransformOrigin="0.5,0.5">
+            <Button.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                            <SkewTransform CenterX="0.5" CenterY="0.5" />
+                            <RotateTransform Angle="-421.783" CenterX="0.5" CenterY="0.5" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Offset="1" Color="#FF081D70" />
+                    <GradientStop Color="#FFFC07C4" />
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Effect>
+                <DropShadowEffect
+                    BlurRadius="25"
+                    Direction="315"
+                    RenderingBias="Performance"
+                    ShadowDepth="10"
+                    Color="#FF081D70" />
+            </Button.Effect>
+        </Button>
+        <Button
+            Name="SaveQuizButton"
+            Grid.Row="3"
+            Grid.Column="3"
+            Height="45"
+            MaxWidth="150"
+            BorderBrush="#FFFC07C4"
+            Command="{Binding SaveQuizCommand}"
+            Content="SAVE QUIZ"
+            Cursor="Hand"
+            FontFamily="Agency FB"
+            FontSize="26"
+            FontWeight="Bold"
+            Foreground="White"
+            RenderTransformOrigin="0.5,0.5">
+            <Button.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                            <SkewTransform CenterX="0.5" CenterY="0.5" />
+                            <RotateTransform Angle="-421.783" CenterX="0.5" CenterY="0.5" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Offset="1" Color="#FF081D70" />
+                    <GradientStop Color="#FFFC07C4" />
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Effect>
+                <DropShadowEffect
+                    BlurRadius="25"
+                    Direction="315"
+                    RenderingBias="Performance"
+                    ShadowDepth="10"
+                    Color="#FF081D70" />
+            </Button.Effect>
+        </Button>
+        <Button
+            Grid.Row="0"
+            Grid.Column="3"
+            Width="80"
+            Height="40"
+            Margin="0,0,2,10"
+            Padding="4"
+            HorizontalAlignment="Right"
+            HorizontalContentAlignment="Center"
+            VerticalContentAlignment="Center"
+            BorderBrush="#FFFC07C4"
+            Command="{Binding QuitQuizCommand}"
+            Content="MAIN"
+            Cursor="Hand"
+            FontFamily="Agency FB"
+            FontSize="22"
+            FontWeight="Bold"
+            Foreground="White"
+            RenderTransformOrigin="0.5,0.5">
+            <Button.Background>
+                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                    <LinearGradientBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                            <SkewTransform CenterX="0.5" CenterY="0.5" />
+                            <RotateTransform Angle="-421.783" CenterX="0.5" CenterY="0.5" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </LinearGradientBrush.RelativeTransform>
+                    <GradientStop Offset="1" Color="#FF081D70" />
+                    <GradientStop Color="#FFFC07C4" />
+                </LinearGradientBrush>
+            </Button.Background>
+            <Button.Effect>
+                <DropShadowEffect
+                    BlurRadius="25"
+                    Direction="315"
+                    RenderingBias="Performance"
+                    ShadowDepth="10"
+                    Color="#FF081D70" />
+            </Button.Effect>
+        </Button>
+    </Grid>
+</UserControl>
