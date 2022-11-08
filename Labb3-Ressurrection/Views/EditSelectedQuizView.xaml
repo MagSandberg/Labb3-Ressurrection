@@ -111,7 +111,7 @@
                 Background="Aqua"
                 FontFamily="Agency FB"
                 FontSize="18"
-                ItemsSource="{Binding QuestionList, UpdateSourceTrigger=PropertyChanged}"
+                ItemsSource="{Binding QuestionList, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                 SelectedIndex="{Binding SelectedQuestionIndex, UpdateSourceTrigger=PropertyChanged}" />
             <TextBlock
                 Grid.Row="0"
@@ -396,81 +396,124 @@
                 </CheckBox.LayoutTransform>
             </CheckBox>
         </Grid>
-        <Button
+        <StackPanel
             Grid.Row="3"
             Grid.Column="2"
-            Height="45"
-            MaxWidth="160"
-            BorderBrush="#FFFC07C4"
-            Command="{Binding EditQuestionCommand}"
-            Content="SAVE EDIT"
-            Cursor="Hand"
-            FontFamily="Agency FB"
-            FontSize="26"
-            FontWeight="Bold"
-            Foreground="White"
-            RenderTransformOrigin="0.5,0.5">
-            <Button.Background>
-                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                    <LinearGradientBrush.RelativeTransform>
-                        <TransformGroup>
-                            <ScaleTransform CenterX="0.5" CenterY="0.5" />
-                            <SkewTransform CenterX="0.5" CenterY="0.5" />
-                            <RotateTransform Angle="-421.783" CenterX="0.5" CenterY="0.5" />
-                            <TranslateTransform />
-                        </TransformGroup>
-                    </LinearGradientBrush.RelativeTransform>
-                    <GradientStop Offset="1" Color="#FF081D70" />
-                    <GradientStop Color="#FFFC07C4" />
-                </LinearGradientBrush>
-            </Button.Background>
-            <Button.Effect>
-                <DropShadowEffect
-                    BlurRadius="25"
-                    Direction="315"
-                    RenderingBias="Performance"
-                    ShadowDepth="10"
-                    Color="#FF081D70" />
-            </Button.Effect>
-        </Button>
-        <Button
-            Name="SaveQuizButton"
-            Grid.Row="3"
-            Grid.Column="3"
-            Height="45"
-            MaxWidth="150"
-            BorderBrush="#FFFC07C4"
-            Command="{Binding SaveQuizCommand}"
-            Content="SAVE QUIZ"
-            Cursor="Hand"
-            FontFamily="Agency FB"
-            FontSize="26"
-            FontWeight="Bold"
-            Foreground="White"
-            RenderTransformOrigin="0.5,0.5">
-            <Button.Background>
-                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-                    <LinearGradientBrush.RelativeTransform>
-                        <TransformGroup>
-                            <ScaleTransform CenterX="0.5" CenterY="0.5" />
-                            <SkewTransform CenterX="0.5" CenterY="0.5" />
-                            <RotateTransform Angle="-421.783" CenterX="0.5" CenterY="0.5" />
-                            <TranslateTransform />
-                        </TransformGroup>
-                    </LinearGradientBrush.RelativeTransform>
-                    <GradientStop Offset="1" Color="#FF081D70" />
-                    <GradientStop Color="#FFFC07C4" />
-                </LinearGradientBrush>
-            </Button.Background>
-            <Button.Effect>
-                <DropShadowEffect
-                    BlurRadius="25"
-                    Direction="315"
-                    RenderingBias="Performance"
-                    ShadowDepth="10"
-                    Color="#FF081D70" />
-            </Button.Effect>
-        </Button>
+            Grid.ColumnSpan="2"
+            HorizontalAlignment="Center"
+            Orientation="Horizontal">
+            <Button
+                Width="168"
+                Height="40"
+                Margin="0,0,1,0"
+                VerticalAlignment="Bottom"
+                BorderBrush="#FFFC07C4"
+                Command="{Binding RemoveQuestionCommand}"
+                Content="REMOVE QUESTION"
+                Cursor="Hand"
+                FontFamily="Agency FB"
+                FontSize="24"
+                FontWeight="Bold"
+                Foreground="White"
+                RenderTransformOrigin="0.5,0.5">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                                <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                <RotateTransform Angle="-421.783" CenterX="0.5" CenterY="0.5" />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Offset="1" Color="#FF081D70" />
+                        <GradientStop Color="#FFFC07C4" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Effect>
+                    <DropShadowEffect
+                        BlurRadius="25"
+                        Direction="315"
+                        RenderingBias="Performance"
+                        ShadowDepth="10"
+                        Color="#FF081D70" />
+                </Button.Effect>
+            </Button>
+            <Button
+                Width="98"
+                Height="40"
+                Margin="1,0,1,0"
+                VerticalAlignment="Bottom"
+                BorderBrush="#FFFC07C4"
+                Command="{Binding EditQuestionCommand}"
+                Content="SAVE EDIT"
+                Cursor="Hand"
+                FontFamily="Agency FB"
+                FontSize="24"
+                FontWeight="Bold"
+                Foreground="White"
+                RenderTransformOrigin="0.5,0.5">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                                <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                <RotateTransform Angle="-421.783" CenterX="0.5" CenterY="0.5" />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Offset="1" Color="#FF081D70" />
+                        <GradientStop Color="#FFFC07C4" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Effect>
+                    <DropShadowEffect
+                        BlurRadius="25"
+                        Direction="315"
+                        RenderingBias="Performance"
+                        ShadowDepth="10"
+                        Color="#FF081D70" />
+                </Button.Effect>
+            </Button>
+            <Button
+                Width="100"
+                Height="40"
+                Margin="1,0,0,0"
+                VerticalAlignment="Bottom"
+                BorderBrush="#FFFC07C4"
+                Command="{Binding SaveQuizCommand}"
+                Content="SAVE QUIZ"
+                Cursor="Hand"
+                FontFamily="Agency FB"
+                FontSize="24"
+                FontWeight="Bold"
+                Foreground="White"
+                RenderTransformOrigin="0.5,0.5">
+                <Button.Background>
+                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                        <LinearGradientBrush.RelativeTransform>
+                            <TransformGroup>
+                                <ScaleTransform CenterX="0.5" CenterY="0.5" />
+                                <SkewTransform CenterX="0.5" CenterY="0.5" />
+                                <RotateTransform Angle="-421.783" CenterX="0.5" CenterY="0.5" />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop Offset="1" Color="#FF081D70" />
+                        <GradientStop Color="#FFFC07C4" />
+                    </LinearGradientBrush>
+                </Button.Background>
+                <Button.Effect>
+                    <DropShadowEffect
+                        BlurRadius="25"
+                        Direction="315"
+                        RenderingBias="Performance"
+                        ShadowDepth="10"
+                        Color="#FF081D70" />
+                </Button.Effect>
+            </Button>
+        </StackPanel>
         <Button
             Grid.Row="0"
             Grid.Column="3"

@@ -66,7 +66,9 @@ public class QuizModel
         var path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), $"{title}.json");
 
         using var sr = new StreamReader(path);
-        return await JsonSerializer.DeserializeAsync<List<QuestionProperties>>(sr.BaseStream);
+        var list = await JsonSerializer.DeserializeAsync<List<QuestionProperties>>(sr.BaseStream);
+        sr.Close();
+        return list;
     }
 
     public ListOfTitles GetTitles()
@@ -94,16 +96,16 @@ public class QuizModel
                 await JsonSerializer.SerializeAsync(sw.BaseStream, Questions, options);
                 sw.Close();
             }
-
-            if (File.Exists(path))
+            else
             {
                 try
                 {
                     var options = new JsonSerializerOptions { WriteIndented = true };
 
                     await using var sw = new StreamWriter(path);
-                    await JsonSerializer.SerializeAsync(sw.BaseStream, Questions, options);
+                    await JsonSerializer.SerializeAsync(sw.BaseStream, QuizQuestionProperties.Result, options);
                     sw.Close();
+                    QuizQuestionProperties.Result?.Clear();
                 }
                 catch (Exception e)
                 {

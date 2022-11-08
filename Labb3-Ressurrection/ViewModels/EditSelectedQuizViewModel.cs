@@ -15,13 +15,15 @@ public class EditSelectedQuizViewModel : ObservableObject
     public IRelayCommand EditQuestionCommand { get; }
     public IRelayCommand SaveQuizCommand { get; }
     public IRelayCommand MainMenuCommand { get; }
+    public IRelayCommand RemoveQuestionCommand { get; }
+
 
     private List<QuestionProperties> _questionList;
 
     public List<QuestionProperties> QuestionList
     {
         get { return _questionList; }
-        set { _questionList = value; }
+        set { SetProperty(ref _questionList, value); }
     }
 
     private string _selectedQuiz = null!;
@@ -124,8 +126,7 @@ public class EditSelectedQuizViewModel : ObservableObject
 
     private string[] _answers = new string[3];
     public string[] Answers => _answers;
-
-    public int IndexCurrentQuestion { get; set; }
+    
 
     public EditSelectedQuizViewModel(NavigationManager navigationManager, QuizModel quizModel)
     {
@@ -142,24 +143,13 @@ public class EditSelectedQuizViewModel : ObservableObject
         QuizAnswerThree = QuestionList[0].Answers[2];
 
         CorrectAnswer = QuestionList[0].CorrectAnswer;
-        if (CorrectAnswer == 0)
+        CheckCorrectAnswer();
+
+        RemoveQuestionCommand = new RelayCommand(() =>
         {
-            CheckBoxOne = true;
-            CheckBoxTwo = false;
-            CheckBoxThree = false;
-        }
-        if (CorrectAnswer == 1)
-        {
-            CheckBoxOne = false;
-            CheckBoxTwo = true;
-            CheckBoxThree = false;
-        }
-        if (CorrectAnswer == 2)
-        {
-            CheckBoxOne = false;
-            CheckBoxTwo = false;
-            CheckBoxThree = true;
-        }
+            _quizModel.RemoveQuestion(SelectedQuestionIndex);
+            UpdateQuizList();
+        }, () => true);
 
         EditQuestionCommand = new RelayCommand(() =>
         {
@@ -167,12 +157,11 @@ public class EditSelectedQuizViewModel : ObservableObject
             {
                 if (QuestionList.Exists(s => s.Statement == QuizQuestion))
                 {
-                    _quizModel.RemoveQuestion(IndexCurrentQuestion);
                     _quizModel.AddQuestion(QuizQuestion, CorrectAnswer, (string[])Answers.Clone());
                 }
                 else
                 {
-                    PopulateProperties(IndexCurrentQuestion + 1);
+                    PopulateProperties(SelectedQuestionIndex + 1);
                     _quizModel.AddQuestion(QuizQuestion, CorrectAnswer, (string[])Answers.Clone());
                 }
             }
@@ -240,6 +229,11 @@ public class EditSelectedQuizViewModel : ObservableObject
         QuizAnswerThree = QuestionList[index].Answers[2];
 
         CorrectAnswer = QuestionList[index].CorrectAnswer;
+        CheckCorrectAnswer();
+    }
+
+    public void CheckCorrectAnswer()
+    {
         if (CorrectAnswer == 0)
         {
             CheckBoxOne = true;
