@@ -158,16 +158,6 @@ public class QuizViewModel : ObservableObject
         }
     }
 
-    private int _questionsAnswered;
-    public int QuestionsAnswered
-    {
-        get { return _questionsAnswered; }
-        set
-        {
-            SetProperty(ref _questionsAnswered, value);
-        }
-    }
-
     public int[] QuestionIndexArray { get; set; } = new int[100];
 
     private int _questionIndex;
@@ -178,6 +168,14 @@ public class QuizViewModel : ObservableObject
         {
             SetProperty(ref QuestionIndexArray[QuestionsAsked], value);
         }
+    }
+
+    private bool _isEnabled;
+
+    public bool IsEnabled
+    {
+        get { return _isEnabled; }
+        set { SetProperty(ref _isEnabled, value); }
     }
 
     public QuizViewModel(NavigationManager navigationManager, QuizModel quizModel)
@@ -192,6 +190,8 @@ public class QuizViewModel : ObservableObject
 
         var randomQuestion = _quizModel.GetRandomQuestion();
         QuestionIndex = _quizModel.CurrentRandomQuestionIndex;
+
+        IsEnabled = true;
 
         TotalQuizQuestions = _quizModel.QuizQuestionProperties.Result.Count;
         QuestionsAsked++;
@@ -214,7 +214,7 @@ public class QuizViewModel : ObservableObject
 
             if (QuestionsAsked == TotalQuizQuestions - 1)
             {
-                QuizQuestion = "You finished this quiz!";
+                QuizQuestion = "You finished the quiz!";
 
                 CheckBoxOne = false;
                 CheckBoxTwo = false;
@@ -223,38 +223,61 @@ public class QuizViewModel : ObservableObject
                 QuizAnswerOne = string.Empty;
                 QuizAnswerTwo = string.Empty;
                 QuizAnswerThree = string.Empty;
+
+                IsEnabled = false;
             }
             else
             {
                 while (questionAsked)
                 {
-                    randomQuestion = _quizModel.GetRandomQuestion();
-                    var currentIndex = _quizModel.CurrentRandomQuestionIndex;
-
-                    if (QuestionIndexArray.Contains(currentIndex))
+                    if (TotalQuizQuestions == 1)
                     {
-                        questionAsked = true;
+                        QuizQuestion = "You finished the quiz!";
+
+                        CheckBoxOne = false;
+                        CheckBoxTwo = false;
+                        CheckBoxThree = false;
+
+                        QuizAnswerOne = string.Empty;
+                        QuizAnswerTwo = string.Empty;
+                        QuizAnswerThree = string.Empty;
+
+                        IsEnabled = false;
+
+                        questionAsked = false;
                     }
                     else
                     {
-                        questionAsked = false;
+                        randomQuestion = _quizModel.GetRandomQuestion();
+                        var currentIndex = _quizModel.CurrentRandomQuestionIndex;
+
+                        if (QuestionIndexArray.Contains(currentIndex))
+                        {
+                            questionAsked = true;
+                        }
+                        else
+                        {
+                            questionAsked = false;
+                        }
                     }
                 }
-                QuestionIndex = _quizModel.CurrentRandomQuestionIndex;
+                if (TotalQuizQuestions > QuestionsAsked)
+                {
+                    QuestionIndex = _quizModel.CurrentRandomQuestionIndex;
 
-                QuestionsAsked++;
-                QuestionsAnswered++;
+                    QuestionsAsked++;
 
-                CheckBoxOne = false;
-                CheckBoxTwo = false;
-                CheckBoxThree = false;
+                    CheckBoxOne = false;
+                    CheckBoxTwo = false;
+                    CheckBoxThree = false;
 
-                QuizQuestion = randomQuestion.Statement;
-                QuizAnswerOne = $"1. {randomQuestion.Answers[0]}";
-                QuizAnswerTwo = $"2. {randomQuestion.Answers[1]}";
-                QuizAnswerThree = $"3. {randomQuestion.Answers[2]}";
-                QuizCorrectAnswer = randomQuestion.CorrectAnswer;
-                UserAnswer();
+                    QuizQuestion = randomQuestion.Statement;
+                    QuizAnswerOne = $"1. {randomQuestion.Answers[0]}";
+                    QuizAnswerTwo = $"2. {randomQuestion.Answers[1]}";
+                    QuizAnswerThree = $"3. {randomQuestion.Answers[2]}";
+                    QuizCorrectAnswer = randomQuestion.CorrectAnswer;
+                    UserAnswer(); 
+                }
             }
         }, () => true);
     }

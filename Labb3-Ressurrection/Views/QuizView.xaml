@@ -240,7 +240,7 @@
                     FontSize="20"
                     FontWeight="Bold"
                     Foreground="White"
-                    Text="{Binding QuestionsAnswered}"
+                    Text="{Binding QuestionsAsked}"
                     TextAlignment="Left">
                     <TextBlock.Effect>
                         <DropShadowEffect
@@ -435,6 +435,7 @@
                 FontSize="16"
                 FontWeight="Bold"
                 Foreground="AliceBlue"
+                IsEnabled="{Binding IsEnabled}"
                 IsChecked="{Binding CheckBoxOne, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <CheckBox.Effect>
                     <DropShadowEffect BlurRadius="15" Color="#FF1D3782" />
@@ -457,6 +458,7 @@
                 FontSize="16"
                 FontWeight="Bold"
                 Foreground="AliceBlue"
+                IsEnabled="{Binding IsEnabled}"
                 IsChecked="{Binding CheckBoxTwo, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <CheckBox.Effect>
                     <DropShadowEffect BlurRadius="15" Color="#FF1D3782" />
@@ -478,6 +480,7 @@
                 FontSize="16"
                 FontWeight="Bold"
                 Foreground="AliceBlue"
+                IsEnabled="{Binding IsEnabled}"
                 IsChecked="{Binding CheckBoxThree, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
                 <CheckBox.Effect>
                     <DropShadowEffect BlurRadius="15" Color="#FF1D3782" />
@@ -497,6 +500,7 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             BorderBrush="#FFFC07C4"
+            IsEnabled="{Binding IsEnabled}"
             Command="{Binding GetNextRandomQuestion}"
             Content="NEXT QUESTION  &#9654;"
             Cursor="Hand"
