@@ -90,13 +90,7 @@ public class EditSelectedQuizViewModel : ObservableObject
 
     }
 
-    private int _correctAnswe;
-
-    public int CorrectAnswer
-    {
-        get { return _correctAnswe; }
-        set { _correctAnswe = value; }
-    }
+    public int CorrectAnswer { get; set; }
 
     private bool _checkBoxOne;
     public bool CheckBoxOne
@@ -105,11 +99,6 @@ public class EditSelectedQuizViewModel : ObservableObject
         set
         {
             SetProperty(ref _checkBoxOne, value);
-            if (CheckBoxOne.Equals(true))
-            {
-                CheckBoxTwo = false;
-                CheckBoxThree = false;
-            }
         }
     }
 
@@ -120,11 +109,6 @@ public class EditSelectedQuizViewModel : ObservableObject
         set
         {
             SetProperty(ref _checkBoxTwo, value);
-            if (CheckBoxTwo.Equals(true))
-            {
-                CheckBoxOne = false;
-                CheckBoxThree = false;
-            }
         }
     }
 
@@ -135,11 +119,6 @@ public class EditSelectedQuizViewModel : ObservableObject
         set
         {
             SetProperty(ref _checkBoxThree, value);
-            if (CheckBoxThree.Equals(true))
-            {
-                CheckBoxOne = false;
-                CheckBoxTwo = false;
-            }
         }
     }
 
@@ -163,6 +142,24 @@ public class EditSelectedQuizViewModel : ObservableObject
         QuizAnswerThree = QuestionList[0].Answers[2];
 
         CorrectAnswer = QuestionList[0].CorrectAnswer;
+        if (CorrectAnswer == 0)
+        {
+            CheckBoxOne = true;
+            CheckBoxTwo = false;
+            CheckBoxThree = false;
+        }
+        if (CorrectAnswer == 1)
+        {
+            CheckBoxOne = false;
+            CheckBoxTwo = true;
+            CheckBoxThree = false;
+        }
+        if (CorrectAnswer == 2)
+        {
+            CheckBoxOne = false;
+            CheckBoxTwo = false;
+            CheckBoxThree = true;
+        }
 
         EditQuestionCommand = new RelayCommand(() =>
         {
@@ -243,18 +240,23 @@ public class EditSelectedQuizViewModel : ObservableObject
         QuizAnswerThree = QuestionList[index].Answers[2];
 
         CorrectAnswer = QuestionList[index].CorrectAnswer;
-
         if (CorrectAnswer == 0)
         {
-            SetProperty(ref _checkBoxOne, true);
+            CheckBoxOne = true;
+            CheckBoxTwo = false;
+            CheckBoxThree = false;
         }
-        else if (CorrectAnswer == 1)
+        if (CorrectAnswer == 1)
         {
-            SetProperty(ref _checkBoxTwo, true);
+            CheckBoxOne = false;
+            CheckBoxTwo = true;
+            CheckBoxThree = false;
         }
-        else
+        if (CorrectAnswer == 2)
         {
-            SetProperty(ref _checkBoxThree, true);
+            CheckBoxOne = false;
+            CheckBoxTwo = false;
+            CheckBoxThree = true;
         }
     }
 }

@@ -210,6 +210,45 @@
                             Color="#FF1D3782" />
                     </TextBlock.Effect>
                 </TextBlock>
+                <TextBlock
+                    Width="Auto"
+                    Height="Auto"
+                    Margin="5,0,5,0"
+                    VerticalAlignment="Top"
+                    Background="Transparent"
+                    FontFamily="Agency FB"
+                    FontSize="20"
+                    Text="/"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    TextAlignment="Center">
+                    <TextBlock.Effect>
+                        <DropShadowEffect
+                            BlurRadius="15"
+                            ShadowDepth="5"
+                            Color="#FF1D3782" />
+                    </TextBlock.Effect>
+                </TextBlock>
+                <TextBlock
+                    Name="QuestionsAnswered"
+                    Width="Auto"
+                    Height="Auto"
+                    Margin="0,0,0,0"
+                    VerticalAlignment="Top"
+                    Background="Transparent"
+                    FontFamily="Agency FB"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Foreground="White"
+                    Text="{Binding QuestionsAnswered}"
+                    TextAlignment="Left">
+                    <TextBlock.Effect>
+                        <DropShadowEffect
+                            BlurRadius="15"
+                            ShadowDepth="5"
+                            Color="#FF1D3782" />
+                    </TextBlock.Effect>
+                </TextBlock>
             </StackPanel>
             <StackPanel
                 Grid.Row="1"

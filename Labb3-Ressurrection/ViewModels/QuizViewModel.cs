@@ -149,13 +149,22 @@ public class QuizViewModel : ObservableObject
     }
 
     private int _questionsAsked;
-
     public int QuestionsAsked
     {
         get { return _questionsAsked; }
         set
         {
             SetProperty(ref _questionsAsked, value);
+        }
+    }
+
+    private int _questionsAnswered;
+    public int QuestionsAnswered
+    {
+        get { return _questionsAnswered; }
+        set
+        {
+            SetProperty(ref _questionsAnswered, value);
         }
     }
 
@@ -232,7 +241,9 @@ public class QuizViewModel : ObservableObject
                     }
                 }
                 QuestionIndex = _quizModel.CurrentRandomQuestionIndex;
+
                 QuestionsAsked++;
+                QuestionsAnswered++;
 
                 CheckBoxOne = false;
                 CheckBoxTwo = false;
