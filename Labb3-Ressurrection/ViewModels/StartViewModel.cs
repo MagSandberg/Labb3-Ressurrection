@@ -22,7 +22,12 @@ public class StartViewModel : ObservableObject
         _navigationManager = navigationManager;
         _quizModel = quizModel;
 
-        PlayQuizCommand = new RelayCommand(() => _navigationManager.CurrentViewModel = new SelectQuizViewModel(_navigationManager, _quizModel));
+        PlayQuizCommand = new RelayCommand(() =>
+        {
+            _navigationManager.CurrentViewModel = new SelectQuizViewModel(_navigationManager, _quizModel);
+            _quizModel.CreateDirectory();
+        }, () => true);
+
         CreateQuizCommand = new RelayCommand(() => _navigationManager.CurrentViewModel = new CreateQuizViewModel(_navigationManager, _quizModel));
         EditQuizCommand = new RelayCommand(() => _navigationManager.CurrentViewModel = new EditQuizViewModel(_navigationManager, _quizModel));
         CloseCommand = new RelayCommand(() => { Application.Current.Shutdown(); });

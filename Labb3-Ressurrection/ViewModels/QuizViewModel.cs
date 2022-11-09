@@ -4,7 +4,6 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Labb3_Ressurrection.Managers;
 using Labb3_Ressurrection.Models;
-using Labb3_Ressurrection.Views;
 
 namespace Labb3_Ressurrection.ViewModels;
 
@@ -182,7 +181,7 @@ public class QuizViewModel : ObservableObject
     {
         _navigationManager = navigationManager;
         _quizModel = quizModel;
-
+        
         EditQuizCommand = new RelayCommand(() => _navigationManager.CurrentViewModel = new EditQuizViewModel(_navigationManager, _quizModel));
         QuitQuizCommand = new RelayCommand(() => _navigationManager.CurrentViewModel = new StartViewModel(_navigationManager, _quizModel));
 

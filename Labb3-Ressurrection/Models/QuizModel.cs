@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows.Shapes;
 using Path = System.IO.Path;
 
 namespace Labb3_Ressurrection.Models;
@@ -181,4 +182,40 @@ public class QuizModel
     {
         QuizQuestionProperties.Result.RemoveAt(index);
     }
+
+    public void CreateDirectory()
+    {
+        var directoryPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + "\\Quiztopia");
+        if (!Directory.Exists(directoryPath))
+        {
+            Directory.CreateDirectory(directoryPath);
+        }
+    }
+
+    //public async Task CreateTitleList()
+    //{
+    //    await Task.Run(async () =>
+    //    {
+    //        var titlePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "\\Quiztopia", "quizlist.json");
+
+    //        if (!File.Exists(titlePath))
+    //        {
+    //            var options = new JsonSerializerOptions { WriteIndented = true };
+
+    //            using var sr = new StreamReader(titlePath);
+    //            QuizTitles = await JsonSerializer.DeserializeAsync<ListOfTitles>(sr.BaseStream);
+
+    //            if (!QuizTitles!.quizTitles.Contains(title))
+    //            {
+    //                QuizTitles?.quizTitles.Add(title);
+    //            }
+
+    //            sr.Close();
+
+    //            await using var sw = new StreamWriter(titlePath);
+    //            await JsonSerializer.SerializeAsync(sw.BaseStream, QuizTitles, options);
+    //            sw.Close();
+    //        }
+    //    });
+    //}
 }

@@ -13,7 +13,6 @@ namespace Labb3_Ressurrection
         private readonly NavigationManager _navigationManager;
         private readonly QuizModel _quizModel;
 
-
         public App()
         {
             _navigationManager = new NavigationManager();
