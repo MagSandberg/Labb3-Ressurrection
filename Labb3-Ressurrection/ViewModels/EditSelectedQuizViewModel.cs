@@ -192,7 +192,7 @@ public class EditSelectedQuizViewModel : ObservableObject
                 }
 
                 QuestionList[SelectedQuestionIndex].CorrectAnswer = correctAnswer;
-
+                UpdateQuizList();
                 _quizModel.EditQuestion(SelectedQuestionIndex, QuestionList[SelectedQuestionIndex]);
             }
         }, () => true);

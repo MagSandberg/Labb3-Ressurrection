@@ -121,7 +121,7 @@ public class CreateQuizViewModel : ObservableObject
 
         AddQuestionCommand = new RelayCommand(() =>
         {
-            if (IsQuestionComplete())
+            if (IsQuestionComplete() && TitleExists() )
             {
                 _quizModel.AddQuestion(QuestionTextBox, CorrectAnswerRadioButton, (string[])Answers.Clone());
 
@@ -183,5 +183,14 @@ public class CreateQuizViewModel : ObservableObject
             return true;
         }
         return false;
+    }
+
+    public bool TitleExists()
+    {
+        if (_quizModel.QuizTitles.quizTitles.Contains(TitleTextBox))
+        {
+            return false;
+        }
+        return true;
     }
 }
